@@ -7,10 +7,12 @@ int angleDelta = 1;
 long spinTime = 0;
 const int servoPin = 9; 
 const int servopin = 11;
-
+int switchState = 0;
 
 
 void setup() {
+  pinMode(2, INPUT);
+  pinMode(6, OUTPUT);
   pinMode(servoPin, OUTPUT);
   pinMode(servopin, OUTPUT);
   myServo.attach(servoPin);
@@ -20,9 +22,11 @@ myservo.attach(servopin);
 }
 
 void loop() {
-  
+    switchState = digitalRead(2);
      servoTurn();
-
+      if(switchState == HIGH){
+        digitalWrite(6, HIGH);
+        }
 
 }
 

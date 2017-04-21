@@ -1,6 +1,5 @@
 #include <IRremote.h>
 
-
 const unsigned int IR_RECEIVER_PIN = 7;
 
 IRrecv ir_receiver(IR_RECEIVER_PIN);

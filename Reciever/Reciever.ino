@@ -28,11 +28,9 @@ int motorDirection2 = 1;
  while(digitalRead(1) == 0){
      delay(1);
      }
- delay(3000);
 pinMode(ch1, INPUT); // Set our input and output pins as such
  pinMode(ch2, INPUT);
  pinMode(ch3, INPUT);
- pinMode(led, OUTPUT);
  Serial.begin(9600); //initialise serial
  
 }
@@ -42,55 +40,66 @@ void loop() {
 ch1 = pulseIn(8, HIGH, 25000); // Read the HIGH pulse width of
  ch2 = pulseIn(9, HIGH, 25000); // each channel with timeout specified
  ch3 = pulseIn(10, HIGH, 25000);
- 
-Serial.print("Channel 1:"); // Printing the value of
- Serial.print(ch1); // each channel
- Serial.print("\t");
- Serial.print("Channel 2:");
- Serial.print(ch2);
- Serial.print("\t");
- Serial.print("Channel 3:");
- Serial.println(ch3); // for new line
+
+//Serial.print("Channel 1:"); // Printing the value of
+// Serial.print(ch1); // each channel
+// Serial.print("\t");
+// Serial.print("Channel 2:");
+// Serial.print(ch2);
+// Serial.print("\t");
+// Serial.print("Channel 3:");
+// Serial.println(ch3); // for new line
  
 if(ch1 < 1400){
   motorDirection1=1;
 motorDirection2=-1;
   motorSpeed1=255;
  motorSpeed2=255;
- Serial.print("Left");
+ Serial.print("Left  ");
  roboDrive();
- delay(1000);
+ delay(250);
 }
 
-if(ch1 > 1700){     //right
+else if(ch1 > 1700){     //right
  motorDirection1=-1;
  motorDirection2=1;
  motorSpeed1=255;
  motorSpeed2=255;
- Serial.print("Right");
+ Serial.print("Right  ");
  roboDrive();
- delay(1000);
+ delay(250);
 }
 
-if(ch2 < 1400){     //backwards
+else if(ch2 < 1400){     //backwards
  motorDirection1=-1;
  motorDirection2=-1;
  motorSpeed1=255;
  motorSpeed2=255;
- Serial.print("backwards");
+ Serial.print("backwards  ");
  roboDrive();
- delay(1000);
+ delay(250);
 }
 
-if(ch2 > 1600){    //forward
+else if(ch2 > 1600){    //forward
   motorDirection1=1;
  motorDirection2=1;
  motorSpeed1=255;
  motorSpeed2=255;
- Serial.print("forwards");
+ Serial.print("forwards  ");
  roboDrive();
- delay(1000);
+ delay(250);
 }
+
+else{ 
+ motorDirection1=1;
+ motorDirection2=1;
+ motorSpeed1=0;
+ motorSpeed2=0;
+ Serial.print("stop  ");
+ roboDrive();
+ delay(250);}
+
+
  }
 
   void roboDrive(){

@@ -1,6 +1,6 @@
 int ch1=8;
 int ch2=9;
-int ch3=10;
+
 
  int motorSpeed1 = 0;
 int motorDirection1 = 1;
@@ -30,7 +30,7 @@ int motorDirection2 = 1;
      }
 pinMode(ch1, INPUT); // Set our input and output pins as such
  pinMode(ch2, INPUT);
- pinMode(ch3, INPUT);
+
  Serial.begin(9600); //initialise serial
  
 }
@@ -39,23 +39,23 @@ void loop() {
  
 ch1 = pulseIn(8, HIGH, 25000); // Read the HIGH pulse width of
  ch2 = pulseIn(9, HIGH, 25000); // each channel with timeout specified
- ch3 = pulseIn(10, HIGH, 25000);
 
-//Serial.print("Channel 1:"); // Printing the value of
-// Serial.print(ch1); // each channel
-// Serial.print("\t");
-// Serial.print("Channel 2:");
-// Serial.print(ch2);
-// Serial.print("\t");
-// Serial.print("Channel 3:");
-// Serial.println(ch3); // for new line
+
+Serial.print("Channel 1:"); // Printing the value of
+ Serial.print(ch1); // each channel
+ Serial.print("\t");
+ Serial.print("Channel 2:");
+ Serial.print(ch2);
+ Serial.print("\t");
+
+ 
  
 if(ch1 < 1400){
   motorDirection1=1;
 motorDirection2=-1;
   motorSpeed1=255;
  motorSpeed2=255;
- Serial.print("Left  ");
+ //Serial.print("Left  ");
  roboDrive();
  delay(250);
 }
@@ -65,7 +65,7 @@ else if(ch1 > 1700){     //right
  motorDirection2=1;
  motorSpeed1=255;
  motorSpeed2=255;
- Serial.print("Right  ");
+// Serial.print("Right  ");
  roboDrive();
  delay(250);
 }
@@ -75,7 +75,7 @@ else if(ch2 < 1400){     //backwards
  motorDirection2=-1;
  motorSpeed1=255;
  motorSpeed2=255;
- Serial.print("backwards  ");
+ //Serial.print("backwards  ");
  roboDrive();
  delay(250);
 }
@@ -85,7 +85,7 @@ else if(ch2 > 1600){    //forward
  motorDirection2=1;
  motorSpeed1=255;
  motorSpeed2=255;
- Serial.print("forwards  ");
+// Serial.print("forwards  ");
  roboDrive();
  delay(250);
 }
@@ -95,7 +95,7 @@ else{
  motorDirection2=1;
  motorSpeed1=0;
  motorSpeed2=0;
- Serial.print("stop  ");
+ //Serial.print("stop  ");
  roboDrive();
  delay(250);}
 
@@ -103,15 +103,15 @@ else{
  }
 
   void roboDrive(){
-Serial.print("motor 1: ");
-Serial.print(motorDirection1);
-Serial.print(" motor 2: ");
-Serial.print(motorDirection2);
-
-Serial.print(" motorSpeed1: ");
-Serial.print(motorSpeed1);
-Serial.print(" motorSpeed 2: ");
-Serial.println(motorSpeed2);
+//Serial.print("motor 1: ");
+//Serial.print(motorDirection1);
+//Serial.print(" motor 2: ");
+//Serial.print(motorDirection2);
+//
+//Serial.print(" motorSpeed1: ");
+//Serial.print(motorSpeed1);
+//Serial.print(" motorSpeed 2: ");
+//Serial.println(motorSpeed2);
 
  if(motorDirection1 == 1){ 
  digitalWrite(directionPin1[0], HIGH);
